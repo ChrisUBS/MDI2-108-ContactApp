@@ -9,6 +9,9 @@ import androidx.room.RoomDatabase
 // This is the only way the rest of the app accesses the database operations
 // Abstract tells Rooms to generate the body of this function automatically
 abstract class ContactDatabase : RoomDatabase() {
+    // Abstract - Room generate
+    // Room database is the base class all room databases must extends
+    abstract fun contactDao(): ContactDao
     companion object {
         // @Volatile ensures every thread always reads this value from main memory
         // Without @Volatile a thread could read a stale null from its CPU cache
