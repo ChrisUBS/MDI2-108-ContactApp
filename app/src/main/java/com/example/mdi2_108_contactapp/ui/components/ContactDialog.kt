@@ -13,8 +13,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mdi2_108_contactapp.data.Contact
+import com.example.mdi2_108_contactapp.ui.theme.MDI2108ContactAppTheme
 
 @Composable
 fun ContactDialog(
@@ -68,15 +70,17 @@ fun ContactDialog(
         confirmButton = {
             Button(
                 onClick = {
-                    // Create a Contact object from that inputs fields
-                    // if editing, preserve the original ID: if creating use 0 (Room assigns a new one)
-                    val newContact = Contact(
-                        id = contact?.id ?: 0,
-                        name = name,
-                        phoneNumber = phoneNumber,
-                        email = email
-                    )
-                    onConfirm(newContact)
+                    if(name.isNotBlank() && phoneNumber.isNotBlank()) {
+                        // Create a Contact object from that inputs fields
+                        // if editing, preserve the original ID: if creating use 0 (Room assigns a new one)
+                        val newContact = Contact(
+                            id = contact?.id ?: 0,
+                            name = name,
+                            phoneNumber = phoneNumber,
+                            email = email
+                        )
+                        onConfirm(newContact)
+                    }
                 }
             ) { Text("Save") }
         },
